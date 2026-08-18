@@ -1,0 +1,26 @@
+{
+  "name": "ciencias-liquenes",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@deck.gl/aggregation-layers": "^9.1.0",
+    "@deck.gl/core": "^9.1.0",
+    "@deck.gl/google-maps": "^9.1.0",
+    "@googlemaps/js-api-loader": "^1.16.8"
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.58.1",
+    "happy-dom": "^20.11.2",
+    "typescript": "^5.8.2",
+    "vite": "^6.2.0",
+    "vitest": "^3.0.8"
+  }
+}

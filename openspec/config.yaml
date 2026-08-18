@@ -1,0 +1,47 @@
+schema: spec-driven
+
+context: |
+  Project: CienciasLiquenes (ciencias-liquenes) — Chama lichen bioindicator SPA.
+  Stack: Vite + TypeScript vanilla, Vitest, Google Maps + deck.gl.
+  Delivery: local science-fair (vite / preview on localhost).
+  Artifact store: hybrid (engram + openspec). Artifacts in English.
+
+strict_tdd: false
+
+testing:
+  runner: vitest
+  command: npm test
+  layers:
+    unit: true
+    integration: true
+    e2e: false
+  coverage: false
+  linter: null
+  typechecker: typescript
+  formatter: null
+
+rules:
+  proposal:
+    - Prefer a static, offline-openable SPA unless product constraints require a server
+    - Include map provider and API-key handling constraints (Google Maps)
+    - Define Chama polygon bounds as explicit product geography
+  specs:
+    - Use Given/When/Then for scenarios
+    - Use RFC 2119 keywords (MUST, SHALL, SHOULD, MAY)
+  design:
+    - Document stack choice rationale before implementation
+    - Include sequence diagrams for map data load and heatmap rendering
+  tasks:
+    - Group by phase, use hierarchical numbering
+    - Keep tasks completable in one session
+  apply:
+    guidelines:
+      - Keep the deliverable openable as static assets when possible
+    tdd: false
+    test_command: npm test
+  verify:
+    test_command: npm test
+    build_command: npm run build
+    coverage_threshold: 0
+  archive:
+    - Warn before merging destructive deltas

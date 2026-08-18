@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "1.0.0",
+  "study": {
+    "id": "chama-lichen-2026",
+    "title": "Evaluación y presencia de líquenes — Urbanización Chama",
+    "status": "field-study",
+    "area": "Urbanización Chama, Santiago de Surco, Lima",
+    "institution": "Colegio Particular Cristo Salvador — 6° Grado B",
+    "sampledFrom": "2026-07-05",
+    "sampledTo": "2026-08-18",
+    "notes": "Datos de ficha técnica. Semáforo por incidencia (Alto ≥70%, Medio 40–69.9%, Bajo <40%). Cobertura por morfología no medida en ficha (ceros). Ubicaciones GPS aproximadas dentro del polígono Chama para visualización."
+  },
+  "sites": [
+    {
+      "id": "parque-la-coruna",
+      "name": "Parque La Coruña",
+      "kind": "park",
+      "location": { "lat": -12.1246197, "lng": -76.9925487 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 100% (20/20) — Alto",
+      "sampling": {
+        "treesExamined": 20,
+        "treesWithLichen": 20,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "parque-santos-chocano",
+      "name": "Parque Santos Chocano",
+      "kind": "park",
+      "location": { "lat": -12.127351, "lng": -76.993598 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 66.7% (4/6) — Medio",
+      "sampling": {
+        "treesExamined": 6,
+        "treesWithLichen": 4,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "parque-alcides-vigo",
+      "name": "Parque Alcides Vigo",
+      "kind": "park",
+      "location": { "lat": -12.122654, "lng": -76.994786 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 100% (4/4) — Alto",
+      "sampling": {
+        "treesExamined": 4,
+        "treesWithLichen": 4,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "parque-cristo-salvador",
+      "name": "Parque Cristo Salvador",
+      "kind": "park",
+      "location": { "lat": -12.1275316, "lng": -76.9957622 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 66.7% (4/6) — Medio",
+      "sampling": {
+        "treesExamined": 6,
+        "treesWithLichen": 4,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "parque-el-periodista",
+      "name": "Parque El Periodista",
+      "kind": "park",
+      "location": { "lat": -12.1261463, "lng": -76.9965548 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 100% (6/6) — Alto",
+      "sampling": {
+        "treesExamined": 6,
+        "treesWithLichen": 6,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "parque-santa-rosa",
+      "name": "Parque Santa Rosa",
+      "kind": "park",
+      "location": { "lat": -12.1242948, "lng": -76.9958301 },
+      "trafficExposure": "low",
+      "notes": "Incidencia 83.3% (5/6) — Alto",
+      "sampling": {
+        "treesExamined": 6,
+        "treesWithLichen": 5,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "av-benavides",
+      "name": "Av. Benavides",
+      "kind": "avenue",
+      "location": { "lat": -12.128408, "lng": -76.996417 },
+      "trafficExposure": "high",
+      "notes": "Incidencia 8.3% (1/12) — Bajo",
+      "sampling": {
+        "treesExamined": 12,
+        "treesWithLichen": 1,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "av-higuereta",
+      "name": "Av. Higuereta",
+      "kind": "avenue",
+      "location": { "lat": -12.126506, "lng": -76.991609 },
+      "trafficExposure": "high",
+      "notes": "Incidencia 60.0% (6/10) — Medio",
+      "sampling": {
+        "treesExamined": 10,
+        "treesWithLichen": 6,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "av-valle-del-sur",
+      "name": "Av. Valle del Sur",
+      "kind": "avenue",
+      "location": { "lat": -12.122331, "lng": -76.995076 },
+      "trafficExposure": "medium",
+      "notes": "Incidencia 50.0% (3/6) — Medio",
+      "sampling": {
+        "treesExamined": 6,
+        "treesWithLichen": 3,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    },
+    {
+      "id": "av-aviacion",
+      "name": "Av. Aviación",
+      "kind": "avenue",
+      "location": { "lat": -12.125318, "lng": -76.999424 },
+      "trafficExposure": "high",
+      "notes": "Incidencia 8.3% (1/12) — Bajo",
+      "sampling": {
+        "treesExamined": 12,
+        "treesWithLichen": 1,
+        "avgCoverByMorphology": { "crustose": 0, "foliose": 0, "fruticose": 0 },
+        "dominantMorphology": "crustose"
+      },
+      "pollutionProxy": { "basis": "derived_from_lichen" }
+    }
+  ]
+}
