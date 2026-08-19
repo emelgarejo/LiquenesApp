@@ -3,11 +3,14 @@ import { STUDY_PANELS } from '../content/studyPanels';
 import { bindInfoPanels } from './infoPanel';
 
 describe('Study info panels', () => {
-  it('exposes ficha and investigacion content', () => {
+  it('exposes ficha, investigacion and integrantes content', () => {
     expect(STUDY_PANELS.ficha.title).toMatch(/Ficha técnica/);
     expect(STUDY_PANELS.ficha.html).toMatch(/Incidencia/);
     expect(STUDY_PANELS.investigacion.title).toMatch(/Investigación/);
     expect(STUDY_PANELS.investigacion.html).toMatch(/tráfico/);
+    expect(STUDY_PANELS.integrantes.title).toMatch(/Integrantes/);
+    expect(STUDY_PANELS.integrantes.html).toMatch(/Salazar Leiva Russell/);
+    expect(STUDY_PANELS.integrantes.html).toMatch(/Melgarejo Estrada Alhied Illari/);
   });
 
   it('opens the dialog with panel content', () => {

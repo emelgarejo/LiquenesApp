@@ -1,4 +1,4 @@
-export type StudyPanelId = 'ficha' | 'investigacion';
+export type StudyPanelId = 'ficha' | 'investigacion' | 'integrantes';
 
 export interface StudyPanelContent {
   id: StudyPanelId;
@@ -50,6 +50,43 @@ export const STUDY_PANELS: Record<StudyPanelId, StudyPanelContent> = {
       </ul>
       <h3>Cómo leer la app</h3>
       <p>Los pines muestran la <strong>incidencia de líquenes</strong>. El mapa de calor muestra la <strong>contaminación estimada</strong> (rojo = alto, verde = bajo), alineada con la narrativa del estudio.</p>
+    `,
+  },
+  integrantes: {
+    id: 'integrantes',
+    title: 'Integrantes',
+    html: `
+      <p class="panel-lead">Asignatura: Ciencias — Colegio Particular Cristo Salvador, 6° B (Año PAI 2).</p>
+      <h3>Docente</h3>
+      <dl class="panel-dl">
+        <div>
+          <dt>Salazar Leiva Russell</dt>
+          <dd>Especialidad: Ciencias<br/><a href="mailto:rsalazar@cristosalvador.edu.pe">rsalazar@cristosalvador.edu.pe</a></dd>
+        </div>
+      </dl>
+      <h3>Integrantes</h3>
+      <ul class="panel-list panel-people">
+        <li>
+          <strong>Culquicondor Torres Alessia Macarena</strong>
+          <span class="person-mail"><a href="mailto:culquicondortorresalessia@cristosalvador.edu.pe">culquicondortorresalessia@cristosalvador.edu.pe</a></span>
+        </li>
+        <li>
+          <strong>Reategui Arana Vania Xiomara</strong>
+          <span class="person-mail"><a href="mailto:reateguiaranavania@cristosalvador.edu.pe">reateguiaranavania@cristosalvador.edu.pe</a></span>
+        </li>
+        <li>
+          <strong>Melgarejo Estrada Alhied Illari</strong>
+          <span class="person-mail"><a href="mailto:melgarejoestradaalhied@cristosalvador.edu.pe">melgarejoestradaalhied@cristosalvador.edu.pe</a></span>
+        </li>
+        <li>
+          <strong>Galvez Vargas Mariano Francisco</strong>
+          <span class="person-mail"><a href="mailto:galvezvargasmariano@cristosalvador.edu.pe">galvezvargasmariano@cristosalvador.edu.pe</a></span>
+        </li>
+        <li>
+          <strong>Palpan Son Ethan Rodrigo</strong>
+          <span class="person-mail"><a href="mailto:palpansonethan@cristosalvador.edu.pe">palpansonethan@cristosalvador.edu.pe</a></span>
+        </li>
+      </ul>
     `,
   },
 };

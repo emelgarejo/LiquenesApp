@@ -466,6 +466,33 @@ body,
   gap: 0.35rem;
 }
 
+.panel-people li {
+  font-weight: 400;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.panel-people strong {
+  font-weight: 600;
+}
+
+.person-mail {
+  font-size: 0.82rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.person-mail a,
+.panel-dl a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.person-mail a:hover,
+.panel-dl a:hover {
+  text-decoration: underline;
+}
+
 .panel-note {
   margin: 0.9rem 0 0;
   font-size: 0.86rem;
@@ -518,6 +545,13 @@ body,
 
   .legend li {
     font-size: 0.85rem;
+  }
+
+  /* Site cards live under the map; hide legend so it does not cover the card. */
+  .site-card-open .legend {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .tool-rail {

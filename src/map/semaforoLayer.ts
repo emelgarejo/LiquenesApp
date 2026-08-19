@@ -61,6 +61,7 @@ export function renderSemaforo(
   const closeActive = () => {
     activeInfo?.close();
     activeInfo = null;
+    document.documentElement.classList.remove('site-card-open');
   };
 
   const markers = siteViews.map((site) => {
@@ -92,6 +93,7 @@ export function renderSemaforo(
         activeInfo.close();
       }
       activeInfo = info;
+      document.documentElement.classList.add('site-card-open');
       bindInfoWindowChrome(info, closeActive);
       info.open({ map, anchor: marker });
     };

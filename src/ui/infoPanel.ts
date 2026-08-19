@@ -23,7 +23,7 @@ export function bindInfoPanels(root: HTMLElement): void {
   root.querySelectorAll<HTMLButtonElement>('[data-panel]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const id = btn.dataset.panel as StudyPanelId | undefined;
-      if (id === 'ficha' || id === 'investigacion') {
+      if (id === 'ficha' || id === 'investigacion' || id === 'integrantes') {
         openPanel(id);
       }
     });
