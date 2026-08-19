@@ -19,6 +19,7 @@ const views: SiteView[] = [
     heatWeight: 1 / 12,
     treesExamined: 12,
     treesWithLichen: 1,
+    photoUrl: './photos/av-benavides.jpg',
   },
   {
     id: 'parque-la-coruna',
@@ -32,6 +33,7 @@ const views: SiteView[] = [
     heatWeight: 1,
     treesExamined: 20,
     treesWithLichen: 20,
+    photoUrl: './photos/parque-la-coruna.jpg',
   },
   {
     id: 'av-higuereta',
@@ -45,6 +47,7 @@ const views: SiteView[] = [
     heatWeight: 0.6,
     treesExamined: 10,
     treesWithLichen: 6,
+    photoUrl: './photos/av-higuereta.jpg',
   },
 ];
 

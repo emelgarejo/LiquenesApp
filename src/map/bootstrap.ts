@@ -11,6 +11,52 @@ export interface MapHandle {
   destroy: () => void;
 }
 
+/** Quiet dark basemap so school chrome and semáforo colors stay dominant. */
+const DARK_MAP_STYLES: google.maps.MapTypeStyle[] = [
+  { elementType: 'geometry', stylers: [{ color: '#1d1f24' }] },
+  { elementType: 'labels.text.stroke', stylers: [{ color: '#1d1f24' }] },
+  { elementType: 'labels.text.fill', stylers: [{ color: '#8f8578' }] },
+  {
+    featureType: 'administrative',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#3a342c' }],
+  },
+  {
+    featureType: 'poi',
+    elementType: 'labels',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [{ color: '#1a2620' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{ color: '#2a2d34' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#1a1c20' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{ color: '#3a342c' }],
+  },
+  {
+    featureType: 'transit',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{ color: '#141820' }],
+  },
+];
+
 function loadMapsScript(apiKey: string): Promise<typeof google> {
   const existing = document.querySelector<HTMLScriptElement>(
     'script[data-chama-maps="true"]',
@@ -58,6 +104,8 @@ export async function bootstrapMap(
     streetViewControl: false,
     fullscreenControl: true,
     clickableIcons: false,
+    backgroundColor: '#101218',
+    styles: DARK_MAP_STYLES,
   });
 
   renderBoundary(map, boundary);

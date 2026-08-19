@@ -16,6 +16,42 @@ function supportsFineHover(): boolean {
   );
 }
 
+export function siteCardHtml(site: SiteView): string {
+  const bandLabel = BAND_LABEL[site.band];
+  return `<div class="site-card">
+      <button type="button" class="site-card-close" aria-label="Cerrar">×</button>
+      <img
+        class="site-card-photo"
+        src="${escapeHtml(site.photoUrl)}"
+        alt="Muestra — ${escapeHtml(site.name)}"
+        width="260"
+        height="160"
+        onerror="this.remove()"
+      />
+      <div class="site-card-body">
+        <strong class="site-card-title">${escapeHtml(site.name)}</strong>
+        <p>Semáforo: ${escapeHtml(bandLabel)}</p>
+        <p>Árboles examinados: ${site.treesExamined}</p>
+        <p>Con líquenes: ${site.treesWithLichen}</p>
+        <p>Incidencia: ${(site.prevalence * 100).toFixed(1)}%</p>
+      </div>
+    </div>`;
+}
+
+function bindInfoWindowChrome(info: google.maps.InfoWindow, onClose: () => void): void {
+  google.maps.event.addListenerOnce(info, 'domready', () => {
+    document
+      .querySelectorAll<HTMLButtonElement>('.site-card-close')
+      .forEach((btn) => {
+        btn.onclick = (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          onClose();
+        };
+      });
+  });
+}
+
 export function renderSemaforo(
   map: google.maps.Map,
   siteViews: SiteView[],
@@ -45,20 +81,18 @@ export function renderSemaforo(
     });
 
     const info = new google.maps.InfoWindow({
-      content: `<div style="font:14px/1.4 system-ui,sans-serif;max-width:240px">
-        <strong>${escapeHtml(site.name)}</strong><br/>
-        Semáforo: ${escapeHtml(bandLabel)}<br/>
-        Árboles examinados: ${site.treesExamined}<br/>
-        Con líquenes: ${site.treesWithLichen}<br/>
-        Incidencia: ${(site.prevalence * 100).toFixed(1)}%
-      </div>`,
-    });
+      content: siteCardHtml(site),
+      maxWidth: 280,
+      // Removes the default header row that left empty top space + square close control.
+      headerDisabled: true,
+    } as google.maps.InfoWindowOptions);
 
     const openInfo = () => {
       if (activeInfo && activeInfo !== info) {
         activeInfo.close();
       }
       activeInfo = info;
+      bindInfoWindowChrome(info, closeActive);
       info.open({ map, anchor: marker });
     };
 

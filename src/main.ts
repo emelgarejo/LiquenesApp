@@ -5,15 +5,19 @@ import { toSiteViews } from './domain/derive';
 import { DEFAULT_THRESHOLDS } from './config/thresholds';
 import { bootstrapMap } from './map/bootstrap';
 import { renderLegend } from './ui/legend';
-import { renderLayerToggle } from './ui/layerToggle';
+import { bindHeatToggle } from './ui/layerToggle';
+import { bindInfoPanels } from './ui/infoPanel';
 import { hideStatus, showStatus } from './ui/statusView';
 import { statusFromValidation } from './boot/statusFromValidation';
 
 async function boot(): Promise<void> {
+  const appEl = mustEl('app');
   const mapEl = mustEl('map');
   const statusEl = mustEl('status');
   const legendEl = mustEl('legend');
-  const toggleEl = mustEl('layer-toggle');
+  const heatToggle = mustEl('heat-toggle') as HTMLInputElement;
+
+  bindInfoPanels(appEl);
 
   let env;
   try {
@@ -61,7 +65,7 @@ async function boot(): Promise<void> {
   }
 
   hideStatus(statusEl);
-  renderLegend(legendEl, { heatEnabled: false });
+  renderLegend(legendEl, { heatEnabled: true });
 
   const handle = await bootstrapMap(
     mapEl,
@@ -70,7 +74,9 @@ async function boot(): Promise<void> {
     views,
   );
 
-  renderLayerToggle(toggleEl, async (enabled) => {
+  await handle.setHeatEnabled(true);
+
+  bindHeatToggle(heatToggle, async (enabled) => {
     await handle.setHeatEnabled(enabled);
     renderLegend(legendEl, { heatEnabled: enabled });
   });

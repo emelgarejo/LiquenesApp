@@ -26,6 +26,14 @@ export interface SiteView extends SiteMetrics {
   heatWeight: number;
   treesExamined: number;
   treesWithLichen: number;
+  photoUrl: string;
+}
+
+/** Default sample photo path: public/photos/{siteId}.jpg */
+export function sitePhotoUrl(siteId: string, override?: string): string {
+  const trimmed = override?.trim();
+  if (trimmed) return trimmed;
+  return `./photos/${siteId}.jpg`;
 }
 
 export function prevalence(
@@ -89,6 +97,7 @@ export function toSiteViews(
       heatWeight: heatWeight(prev),
       treesExamined: site.sampling.treesExamined,
       treesWithLichen: site.sampling.treesWithLichen,
+      photoUrl: sitePhotoUrl(site.id, site.photoUrl),
     };
   });
   return { views, warnings };

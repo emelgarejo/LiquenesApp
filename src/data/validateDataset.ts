@@ -315,6 +315,7 @@ function validateSite(raw: RawSite, issues: ValidationIssue[]): UsableSite | nul
     location: { lat, lng },
     trafficExposure: raw.trafficExposure,
     notes: typeof raw.notes === 'string' ? raw.notes : undefined,
+    photoUrl: typeof raw.photoUrl === 'string' ? raw.photoUrl : undefined,
     sampling,
     pollutionProxy,
     observations: Array.isArray(raw.observations) ? raw.observations : undefined,

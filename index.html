@@ -3,20 +3,108 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chama Lichen Bioindicator Heatmap</title>
+    <meta name="theme-color" content="#0b0c0e" />
+    <title>Líquenes Chama · Cristo Salvador 6°B</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
     <div id="app">
       <header class="app-header">
-        <h1>Chama Lichen Bioindicator Heatmap</h1>
+        <h1>Líquenes · Urbanización Chama</h1>
+        <div class="header-brand">
+          <img
+            class="brand-banner"
+            src="./branding/colegio-banner.png"
+            width="320"
+            height="72"
+            alt="Colegio Particular Cristo Salvador — IB World School"
+          />
+          <span class="grade-chip" title="Grado">6°B</span>
+        </div>
       </header>
+
       <div class="map-stage">
         <aside id="legend" class="legend" hidden></aside>
-        <div id="layer-toggle" class="layer-toggle" hidden></div>
-        <main id="map" class="map" role="application" aria-label="Chama study map"></main>
+        <aside id="tool-rail" class="tool-rail" aria-label="Herramientas">
+          <label
+            class="tool-btn tool-heat"
+            data-tooltip="Mapa de calor"
+          >
+            <input
+              type="checkbox"
+              id="heat-toggle"
+              class="visually-hidden"
+              aria-label="Mostrar mapa de calor"
+              checked
+            />
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M12 2c2.2 3.1 4 5.7 4 8.2A4 4 0 1 1 8 10.2C8 7.7 9.8 5.1 12 2Zm-5.5 14.2a5.5 5.5 0 0 0 11 0c0-.7-.2-1.4-.5-2.1-.9 1.5-2.5 2.4-4.5 2.4s-3.6-.9-4.5-2.4c-.3.7-.5 1.4-.5 2.1Z"
+              />
+            </svg>
+          </label>
+          <div class="tool-rail-sep" aria-hidden="true"></div>
+          <button
+            type="button"
+            class="tool-btn"
+            data-panel="ficha"
+            data-tooltip="Ficha técnica"
+            aria-label="Ficha técnica"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M8 3h8a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h1V5a2 2 0 0 1 2-2Zm0 3h8V5H8v1Zm-1 4v2h10v-2H7Zm0 4v2h7v-2H7Z"
+              />
+            </svg>
+          </button>
+          <button
+            type="button"
+            class="tool-btn"
+            data-panel="investigacion"
+            data-tooltip="Investigación"
+            aria-label="Investigación"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path
+                fill="currentColor"
+                d="M10 3a7 7 0 1 1 0 14 7 7 0 0 1 0-14Zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm7.3 10.9 1.4-1.4 3.9 3.9-1.4 1.4-3.9-3.9Z"
+              />
+            </svg>
+          </button>
+        </aside>
+        <main
+          id="map"
+          class="map"
+          role="application"
+          aria-label="Mapa del estudio de líquenes en Chama"
+        ></main>
         <div id="status" class="status" role="status" aria-live="polite"></div>
       </div>
+
+      <dialog id="info-panel" class="info-panel">
+        <div class="info-panel-sheet">
+          <header class="info-panel-header">
+            <h2 id="info-panel-title">Información</h2>
+            <button
+              type="button"
+              class="info-panel-close"
+              data-close-panel
+              aria-label="Cerrar"
+            >
+              ×
+            </button>
+          </header>
+          <div id="info-panel-body" class="info-panel-body"></div>
+        </div>
+      </dialog>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>

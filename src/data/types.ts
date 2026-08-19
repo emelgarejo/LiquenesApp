@@ -40,6 +40,8 @@ export interface RawSite {
   location: SiteLocation;
   trafficExposure: TrafficExposure;
   notes?: string;
+  /** Optional sample photo URL (defaults to ./photos/{id}.jpg in the map card). */
+  photoUrl?: string;
   sampling?: Sampling;
   pollutionProxy?: PollutionProxy;
   observations?: Observation[];
@@ -69,6 +71,7 @@ export interface UsableSite {
   location: SiteLocation;
   trafficExposure: TrafficExposure;
   notes?: string;
+  photoUrl?: string;
   sampling: Sampling;
   pollutionProxy: PollutionProxy;
   observations?: Observation[];

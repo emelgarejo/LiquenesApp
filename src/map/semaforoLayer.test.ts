@@ -31,6 +31,15 @@ beforeEach(() => {
         constructor(_options: Record<string, unknown>) {}
         open() {}
         close() {}
+        addListener() {
+          return { remove() {} };
+        }
+      },
+      event: {
+        addListenerOnce(_target: unknown, _event: string, handler: () => void) {
+          handler();
+          return { remove() {} };
+        },
       },
       SymbolPath: { CIRCLE: 0 },
     },
@@ -50,6 +59,7 @@ const views: SiteView[] = [
     heatWeight: 1 / 12,
     treesExamined: 12,
     treesWithLichen: 1,
+    photoUrl: './photos/av-benavides.jpg',
   },
   {
     id: 'parque-la-coruna',
@@ -63,6 +73,7 @@ const views: SiteView[] = [
     heatWeight: 1,
     treesExamined: 20,
     treesWithLichen: 20,
+    photoUrl: './photos/parque-la-coruna.jpg',
   },
 ];
 
@@ -86,5 +97,13 @@ describe('Semáforo Default / Default semáforo', () => {
     expect(markers[0].options.title).toContain('Bajo');
     expect(markers[0].listeners.some((l) => l.event === 'click')).toBe(true);
     expect(mapListeners.some((l) => l.event === 'click')).toBe(true);
+  });
+
+  it('includes sample photo markup and floating close control', async () => {
+    const { siteCardHtml } = await import('./semaforoLayer');
+    const html = siteCardHtml(views[0]);
+    expect(html).toContain('./photos/av-benavides.jpg');
+    expect(html).toContain('Av. Benavides');
+    expect(html).toContain('site-card-close');
   });
 });
