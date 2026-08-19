@@ -133,22 +133,32 @@ export async function bootstrapMap(
   }
 
   let heat: HeatOverlayHandle | null = null;
+  let heatEpoch = 0;
 
   return {
     map,
     async setHeatEnabled(enabled: boolean) {
-      if (enabled) {
-        if (!heat) {
-          const { attachHeatOverlay } = await import('./heatOverlay');
-          heat = attachHeatOverlay(map, siteViews);
-        } else {
-          heat.setMap(map);
-        }
-      } else if (heat) {
-        heat.setMap(null);
+      const epoch = ++heatEpoch;
+
+      // deck.gl GoogleMapsOverlay often fails to redraw after setMap(null) → setMap(map).
+      // Tear down fully and recreate when enabling again.
+      if (heat) {
+        heat.finalize();
+        heat = null;
       }
+
+      if (!enabled) {
+        return;
+      }
+
+      const { attachHeatOverlay } = await import('./heatOverlay');
+      if (epoch !== heatEpoch) {
+        return;
+      }
+      heat = attachHeatOverlay(map, siteViews);
     },
     destroy() {
+      heatEpoch += 1;
       heat?.finalize();
       heat = null;
       for (const marker of markers) {
