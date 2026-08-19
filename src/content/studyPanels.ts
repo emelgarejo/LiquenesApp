@@ -56,6 +56,16 @@ export const STUDY_PANELS: Record<StudyPanelId, StudyPanelContent> = {
     id: 'integrantes',
     title: 'Integrantes',
     html: `
+      <figure class="panel-team">
+        <img
+          class="panel-team-photo"
+          src="./photos/equipo.jpg"
+          alt="Equipo de Ciencias 6° B — Cristo Salvador"
+          width="1024"
+          height="576"
+        />
+        <figcaption>Equipo de campo — 6° B</figcaption>
+      </figure>
       <p class="panel-lead">Asignatura: Ciencias — Colegio Particular Cristo Salvador, 6° B (Año PAI 2).</p>
       <h3>Docente</h3>
       <dl class="panel-dl">

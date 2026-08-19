@@ -11,6 +11,7 @@ describe('Study info panels', () => {
     expect(STUDY_PANELS.integrantes.title).toMatch(/Integrantes/);
     expect(STUDY_PANELS.integrantes.html).toMatch(/Salazar Leiva Russell/);
     expect(STUDY_PANELS.integrantes.html).toMatch(/Melgarejo Estrada Alhied Illari/);
+    expect(STUDY_PANELS.integrantes.html).toMatch(/photos\/equipo\.jpg/);
   });
 
   it('opens the dialog with panel content', () => {
