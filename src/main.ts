@@ -5,7 +5,6 @@ import { toSiteViews } from './domain/derive';
 import { DEFAULT_THRESHOLDS } from './config/thresholds';
 import { bootstrapMap } from './map/bootstrap';
 import { renderLegend } from './ui/legend';
-import { renderProvisionalNotice } from './ui/provisionalNotice';
 import { renderLayerToggle } from './ui/layerToggle';
 import { hideStatus, showStatus } from './ui/statusView';
 import { statusFromValidation } from './boot/statusFromValidation';
@@ -14,7 +13,6 @@ async function boot(): Promise<void> {
   const mapEl = mustEl('map');
   const statusEl = mustEl('status');
   const legendEl = mustEl('legend');
-  const noticeEl = mustEl('provisional-notice');
   const toggleEl = mustEl('layer-toggle');
 
   let env;
@@ -63,7 +61,6 @@ async function boot(): Promise<void> {
   }
 
   hideStatus(statusEl);
-  renderProvisionalNotice(noticeEl, validated.study!.status || 'provisional');
   renderLegend(legendEl, { heatEnabled: false });
 
   const handle = await bootstrapMap(

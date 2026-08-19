@@ -8,11 +8,26 @@ const BAND_LABEL: Record<Band, string> = {
   poor: 'Bajo',
 };
 
+function supportsFineHover(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(hover: hover) and (pointer: fine)').matches
+  );
+}
+
 export function renderSemaforo(
   map: google.maps.Map,
   siteViews: SiteView[],
 ): google.maps.Marker[] {
-  return siteViews.map((site) => {
+  let activeInfo: google.maps.InfoWindow | null = null;
+
+  const closeActive = () => {
+    activeInfo?.close();
+    activeInfo = null;
+  };
+
+  const markers = siteViews.map((site) => {
     const color = BAND_CENTER[site.band];
     const bandLabel = BAND_LABEL[site.band];
     const marker = new google.maps.Marker({
@@ -39,10 +54,31 @@ export function renderSemaforo(
       </div>`,
     });
 
-    marker.addListener('mouseover', () => info.open({ map, anchor: marker }));
-    marker.addListener('mouseout', () => info.close());
+    const openInfo = () => {
+      if (activeInfo && activeInfo !== info) {
+        activeInfo.close();
+      }
+      activeInfo = info;
+      info.open({ map, anchor: marker });
+    };
+
+    marker.addListener('click', () => openInfo());
+
+    if (supportsFineHover()) {
+      marker.addListener('mouseover', () => openInfo());
+      marker.addListener('mouseout', () => {
+        if (activeInfo === info) {
+          closeActive();
+        }
+      });
+    }
+
     return marker;
   });
+
+  map.addListener('click', () => closeActive());
+
+  return markers;
 }
 
 function escapeHtml(value: string): string {

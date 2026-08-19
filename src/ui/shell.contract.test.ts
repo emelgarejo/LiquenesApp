@@ -1,12 +1,11 @@
 import { describe, expect, it } from 'vitest';
+import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { renderLegend } from './legend';
-import { renderProvisionalNotice } from './provisionalNotice';
 import { showStatus, hideStatus } from './statusView';
 import { MissingMapsKeyError, readEnv } from '../config/env';
 import { statusFromValidation } from '../boot/statusFromValidation';
 import { validateDataset } from '../data/validateDataset';
-import { readFileSync } from 'node:fs';
-import { join } from 'node:path';
 
 describe('Legend / Semáforo legend', () => {
   it('renders Alto Medio Bajo legend for semáforo', () => {
@@ -16,24 +15,18 @@ describe('Legend / Semáforo legend', () => {
     expect(el.textContent).toMatch(/Alto/);
     expect(el.textContent).toMatch(/Medio/);
     expect(el.textContent).toMatch(/Bajo/);
+    expect(el.textContent).not.toMatch(/Verde:/);
   });
-});
 
-describe('Provisional Label / Label visible', () => {
-  it('renders dataset status badge', () => {
+  it('adds a contamination heat ramp when heat is enabled', () => {
     const el = document.createElement('div');
-    renderProvisionalNotice(el, 'field-study');
-    expect(el.textContent).toContain('field-study dataset');
-  });
-});
-
-describe('Provisional Shell Notice / Notice visible', () => {
-  it('shows shell notice for study status', () => {
-    const el = document.createElement('div');
-    renderProvisionalNotice(el, 'field-study');
-    expect(el.querySelector('.provisional-badge')?.textContent).toMatch(
-      /field-study/,
+    renderLegend(el, { heatEnabled: true });
+    expect(el.querySelector('.heat-ramp')).toBeTruthy();
+    expect(el.textContent).toMatch(/Contaminación/);
+    const labels = [...el.querySelectorAll('.heat-labels span')].map(
+      (n) => n.textContent?.trim(),
     );
+    expect(labels).toEqual(['Alto', 'Medio', 'Bajo']);
   });
 });
 

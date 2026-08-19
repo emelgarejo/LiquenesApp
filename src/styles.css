@@ -37,7 +37,6 @@ body,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
   gap: 0.75rem;
   padding: 0.85rem 1.1rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 242, 0.9));
@@ -49,6 +48,12 @@ body,
   font-size: 1.15rem;
   font-weight: 700;
   letter-spacing: 0.01em;
+}
+
+.map-stage {
+  position: relative;
+  min-height: 0;
+  height: 100%;
 }
 
 .map {
@@ -69,8 +74,7 @@ body,
 
 .legend,
 .layer-toggle,
-.status,
-.provisional-badge {
+.status {
   background: var(--panel);
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
@@ -79,11 +83,11 @@ body,
 .legend {
   position: absolute;
   z-index: 3;
-  top: 4.5rem;
-  left: 1rem;
+  top: 0.75rem;
+  left: 0.75rem;
   padding: 0.85rem 1rem;
   border-radius: 10px;
-  max-width: 16rem;
+  max-width: min(16rem, calc(100% - 1.5rem));
 }
 
 .legend h2 {
@@ -92,6 +96,20 @@ body,
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--muted);
+}
+
+.legend-subtitle,
+.heat-key-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.legend-subtitle {
+  margin-top: -0.25rem;
 }
 
 .legend ul {
@@ -128,35 +146,45 @@ body,
   background: var(--poor);
 }
 
-.swatch.heat {
-  background: linear-gradient(90deg, #c0392b, #d4a017, #2f8f4e);
+.heat-key {
+  margin-top: 0.7rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--border);
+}
+
+.heat-ramp {
+  height: 0.55rem;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    var(--poor) 0%,
+    var(--moderate) 50%,
+    var(--good) 100%
+  );
+  box-shadow: inset 0 0 0 1px rgba(28, 42, 31, 0.12);
+}
+
+.heat-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
 }
 
 .layer-toggle {
   position: absolute;
   z-index: 3;
-  top: 4.5rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   padding: 0.7rem 0.9rem;
   border-radius: 10px;
   display: flex;
   align-items: center;
   gap: 0.55rem;
   font-size: 0.92rem;
-}
-
-.provisional-badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.35rem 0.7rem;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: #7a4d00;
-  background: #fff4d6;
-  border-color: #efd089;
+  max-width: calc(100% - 1.5rem);
 }
 
 .status {
@@ -192,6 +220,36 @@ body,
 
 .status.empty {
   border-color: #d5dfd2;
+}
+
+@media (max-width: 640px) {
+  .app-header {
+    padding: 0.7rem 0.85rem;
+  }
+
+  .app-header h1 {
+    font-size: 1rem;
+    line-height: 1.25;
+  }
+
+  .legend {
+    top: 0.6rem;
+    left: 0.6rem;
+    max-width: calc(100% - 1.2rem);
+    padding: 0.7rem 0.8rem;
+  }
+
+  .legend li {
+    font-size: 0.85rem;
+  }
+
+  /* Keep heat toggle clear of the legend on narrow screens. */
+  .layer-toggle {
+    top: auto;
+    right: 0.6rem;
+    bottom: 0.85rem;
+    left: auto;
+  }
 }
 
 [hidden] {

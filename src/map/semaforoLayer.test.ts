@@ -3,19 +3,26 @@ import { renderSemaforo } from './semaforoLayer';
 import { BAND_CENTER } from './colors';
 import type { SiteView } from '../domain/derive';
 
-const markers: Array<{ options: Record<string, unknown> }> = [];
+const markers: Array<{
+  options: Record<string, unknown>;
+  listeners: Array<{ event: string; handler: () => void }>;
+}> = [];
+const mapListeners: Array<{ event: string; handler: () => void }> = [];
 
 beforeEach(() => {
   markers.length = 0;
+  mapListeners.length = 0;
   vi.stubGlobal('google', {
     maps: {
       Marker: class {
         options: Record<string, unknown>;
+        listeners: Array<{ event: string; handler: () => void }> = [];
         constructor(options: Record<string, unknown>) {
           this.options = options;
           markers.push(this);
         }
-        addListener() {
+        addListener(event: string, handler: () => void) {
+          this.listeners.push({ event, handler });
           return { remove() {} };
         }
         setMap() {}
@@ -23,6 +30,7 @@ beforeEach(() => {
       InfoWindow: class {
         constructor(_options: Record<string, unknown>) {}
         open() {}
+        close() {}
       },
       SymbolPath: { CIRCLE: 0 },
     },
@@ -60,7 +68,12 @@ const views: SiteView[] = [
 
 describe('Semáforo Default / Default semáforo', () => {
   it('renders one colored marker per site without enabling heat', () => {
-    const map = {} as google.maps.Map;
+    const map = {
+      addListener(event: string, handler: () => void) {
+        mapListeners.push({ event, handler });
+        return { remove() {} };
+      },
+    } as unknown as google.maps.Map;
     const result = renderSemaforo(map, views);
     expect(result).toHaveLength(2);
     expect(markers).toHaveLength(2);
@@ -71,5 +84,7 @@ describe('Semáforo Default / Default semáforo', () => {
       BAND_CENTER.good,
     );
     expect(markers[0].options.title).toContain('Bajo');
+    expect(markers[0].listeners.some((l) => l.event === 'click')).toBe(true);
+    expect(mapListeners.some((l) => l.event === 'click')).toBe(true);
   });
 });

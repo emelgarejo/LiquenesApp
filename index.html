@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,12 +10,13 @@
     <div id="app">
       <header class="app-header">
         <h1>Chama Lichen Bioindicator Heatmap</h1>
-        <div id="provisional-notice"></div>
       </header>
-      <aside id="legend" class="legend" hidden></aside>
-      <div id="layer-toggle" class="layer-toggle" hidden></div>
-      <main id="map" class="map" role="application" aria-label="Chama study map"></main>
-      <div id="status" class="status" role="status" aria-live="polite"></div>
+      <div class="map-stage">
+        <aside id="legend" class="legend" hidden></aside>
+        <div id="layer-toggle" class="layer-toggle" hidden></div>
+        <main id="map" class="map" role="application" aria-label="Chama study map"></main>
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </div>
     </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
